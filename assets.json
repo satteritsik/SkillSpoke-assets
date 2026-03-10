@@ -1,0 +1,177 @@
+{
+  "version": "1.0.0",
+  "base_url": "https://raw.githubusercontent.com/satteritsik/SkillSpoke-assets/main",
+  "assets": [
+    {
+      "name": "combomark-ondark",
+      "type": "combomark",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "combomark-onlight",
+      "type": "combomark",
+      "theme": "onlight",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "combomark-tagline1-ondark",
+      "type": "combomark",
+      "variant": "tagline1",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "combomark-tagline1-onlight",
+      "type": "combomark",
+      "variant": "tagline1",
+      "theme": "onlight",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "combomark-tagline2-onlight",
+      "type": "combomark",
+      "variant": "tagline2",
+      "theme": "onlight",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "combomark-tagline-gold1-ondark",
+      "type": "combomark",
+      "variant": "tagline-gold1",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "lettermark-ondark",
+      "type": "lettermark",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "lettermark-tagline-ondark",
+      "type": "lettermark",
+      "variant": "tagline",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "lettermark-tagline-alt-ondark",
+      "type": "lettermark",
+      "variant": "tagline-alt",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "lettermark-tagline-onlight",
+      "type": "lettermark",
+      "variant": "tagline",
+      "theme": "onlight",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "mark-ondark",
+      "type": "mark",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "mark-onlight",
+      "type": "mark",
+      "theme": "onlight",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "squarelogo-ondark",
+      "type": "squarelogo",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "squarelogo-onlight",
+      "type": "squarelogo",
+      "theme": "onlight",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "tagline-ondark",
+      "type": "tagline",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "tagline-gold-ondark",
+      "type": "tagline",
+      "variant": "gold",
+      "theme": "ondark",
+      "formats": ["svg", "png", "jpg", "ai", "eps", "pdf", "tiff"],
+      "png_scales": ["1x", "1.5x", "2x", "3x", "4x"]
+    },
+    {
+      "name": "linkedin-company-banner-1",
+      "type": "social",
+      "platform": "linkedin",
+      "formats": ["png"]
+    },
+    {
+      "name": "linkedin-profile-banner-1",
+      "type": "social",
+      "platform": "linkedin",
+      "formats": ["png"]
+    },
+    {
+      "name": "linkedin-profile-banner-2",
+      "type": "social",
+      "platform": "linkedin",
+      "formats": ["png"]
+    },
+    {
+      "name": "linkedin-profile-banner-3",
+      "type": "social",
+      "platform": "linkedin",
+      "formats": ["png"]
+    },
+    {
+      "name": "linkedin-profile-banner-4",
+      "type": "social",
+      "platform": "linkedin",
+      "formats": ["png"]
+    },
+    {
+      "name": "linkedin-logo",
+      "type": "social",
+      "platform": "linkedin",
+      "formats": ["png"]
+    },
+    {
+      "name": "email-signature",
+      "type": "google",
+      "formats": ["html"]
+    },
+    {
+      "name": "workspace-logo",
+      "type": "google",
+      "formats": ["png"]
+    },
+    {
+      "name": "rotating-logo",
+      "type": "animated",
+      "formats": ["gif"]
+    }
+  ]
+}
