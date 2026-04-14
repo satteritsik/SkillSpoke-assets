@@ -7,3 +7,8 @@ Thumbs.db
 .dolt/
 *.db
 .beads-credential-key
+
+# Beads issue tracker
+.beads/
+! .beads/config.yaml
+.worktrees/
