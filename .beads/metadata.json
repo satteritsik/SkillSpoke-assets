@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "SkillSpoke_assets",
+  "project_id": "94baa9da-4cc6-4c74-b666-15e16cf4ba54"
+}
