@@ -1,12 +1,12 @@
 {
   "repoPath": "/Users/msat1971/projects/SkillSpoke/app/SkillSpoke-assets",
-  "lastCommit": "34acc5e0dd044cc275805a8db3264ed8eb6d78dd",
-  "indexedAt": "2026-05-11T23:26:13.020Z",
+  "lastCommit": "003d4e3023563bb498d9c49e5a45b1d1489fc2e0",
+  "indexedAt": "2026-06-25T16:21:01.679Z",
   "remoteUrl": "https://github.com/satteritsik/SkillSpoke-assets",
   "stats": {
-    "files": 6,
-    "nodes": 34,
-    "edges": 28,
+    "files": 3,
+    "nodes": 35,
+    "edges": 32,
     "communities": 0,
     "processes": 0,
     "embeddings": 0
