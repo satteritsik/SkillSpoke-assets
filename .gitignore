@@ -12,3 +12,6 @@ Thumbs.db
 .beads/
 ! .beads/config.yaml
 .worktrees/
+
+# Beads / Dolt files (added by bd init)
+.beads/proxieddb/

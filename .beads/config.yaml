@@ -67,4 +67,4 @@
 
 export.auto: true
 sync:
-    remote: "git+https://github.com/satteritsik/SkillSpoke-assets.git"
+    remote: "https://github.com/satteritsik/SkillSpoke-assets.git"
