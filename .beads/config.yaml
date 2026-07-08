@@ -68,3 +68,7 @@
 export.auto: true
 sync:
     remote: "https://github.com/satteritsik/SkillSpoke-assets.git"
+dolt:
+    shared-server: true
+    port: 3308
+    database: SkillSpoke_assets
