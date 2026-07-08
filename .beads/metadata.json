@@ -2,6 +2,7 @@
   "database": "dolt",
   "backend": "dolt",
   "dolt_mode": "server",
+  "dolt_server_port": 3400,
   "dolt_database": "SkillSpoke_assets",
-  "project_id": "94baa9da-4cc6-4c74-b666-15e16cf4ba54"
+  "project_id": "a58b3667-5856-491b-9c7c-20d39ba9d38b"
 }
