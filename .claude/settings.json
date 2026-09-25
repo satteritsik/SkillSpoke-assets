@@ -4,7 +4,23 @@
       {
         "hooks": [
           {
-            "command": "bd prime --hook-json",
+            "command": "python3 \"$SKILLSPOKE_CC/ops/memory-consolidate.py\" hook --part 1",
+            "timeout": 30,
+            "type": "command"
+          },
+          {
+            "command": "python3 \"$SKILLSPOKE_CC/ops/memory-consolidate.py\" hook --part 2",
+            "timeout": 30,
+            "type": "command"
+          },
+          {
+            "command": "python3 \"$SKILLSPOKE_CC/ops/memory-consolidate.py\" hook --part 3",
+            "timeout": 30,
+            "type": "command"
+          },
+          {
+            "command": "python3 \"$SKILLSPOKE_CC/ops/memory-consolidate.py\" hook --part 4",
+            "timeout": 30,
             "type": "command"
           }
         ],
