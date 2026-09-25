@@ -120,3 +120,34 @@ bd prime                # Refresh Beads context
 
 **Architecture in one line:** issues live in a local Dolt DB; sync uses `refs/dolt/data` on your git remote; `.beads/issues.jsonl` is a passive export. See https://github.com/gastownhall/beads/blob/main/docs/SYNC_CONCEPTS.md for details and anti-patterns.
 <!-- END BEADS CODEX SETUP -->
+
+<!-- BEGIN SKILLSPOKE SHARED: written by `polyrepo agents-sync` from repositories/agents-shared-block.md in the SkillSpoke repo; edit it there -->
+## SkillSpoke: instructions shared by every repository
+
+SkillSpoke is a personal job-search agent: it does the job search on the seeker's behalf, and
+every capability serves the job seeker. This repository is one of the project's repositories;
+the SkillSpoke command-and-control repository (`$SKILLSPOKE_CC`) holds the instructions that
+apply across all of them.
+
+- **Who works here.** The owner is the only human. Claude Code wrote all of the code and
+  documentation, so anything found here, finished or not, is Claude Code's to own and fix.
+- **Repository facts.** Ask the `polyrepo-steward` agent for anything about a repository
+  other than its contents: which repo owns a function, where a repo is, whether it is up to
+  date with GitHub, creating, renaming or deprecating one.
+- **Repository names.** `SkillSpoke-{name}` is the personal-agent app; `shared-{name}` is
+  shared across the whole company; `marketing-{name}` is marketing; `employer-{name}` is the
+  employer app. A repo is never deleted: it is deprecated by renaming it `deprecated-{name}`
+  in lowercase, and archived on GitHub 60 days later.
+- **Project documentation** (product, architecture, research, glossary) lives in the
+  `skillspoke-docs` Obsidian vault. The architecture is the arc42 SAD under
+  `docs/tech/architecture/arc42/` in the vault.
+- **Commits.** `type(scope): description`, no `Co-Authored-By`. `--no-verify` is forbidden:
+  when a pre-commit hook fails, fix every finding and commit again.
+- **Errors stay visible.** `2>/dev/null` is not used in hooks, scripts or commands.
+- **Platform rules.** Lambda handlers use `aws-lambda-powertools` (FastAPI, Flask and Django
+  are banned). API Gateway is REST API v1 (HTTP API v2 is banned).
+- **Service isolation.** A service never imports another service's code, never shares a
+  DynamoDB table with another service, and never uses CloudFormation exports for
+  cross-stack references (SSM Parameter Store is used instead).
+- **Issue tracking** is beads (`bd`).
+<!-- END SKILLSPOKE SHARED -->
