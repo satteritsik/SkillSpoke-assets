@@ -149,6 +149,9 @@ apply across all of them.
 - **Service isolation.** A service never imports another service's code, never shares a
   DynamoDB table with another service, and never uses CloudFormation exports for
   cross-stack references (SSM Parameter Store is used instead).
+- **CDK.** Build every CDK app and stack with `shared-cdk-lib` (import `skillspoke_cdk`): `run_app`,
+  `PlatformStack`, `Names`, `ChassisFunction`, `PlatformRestApi`, `PlatformTable`, `put_param`; never a
+  copied `lambda_utils.py`. A repository not yet on it moves to it when a Task next changes its CDK.
 - **Issue tracking** is beads (`bd`).
 <!-- END SKILLSPOKE SHARED -->
 
