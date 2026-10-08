@@ -4,6 +4,8 @@
 This project is indexed by GitNexus as **shared-brand-assets** (23 symbols, 20 relationships, 0 execution flows). Use the GitNexus MCP tools to understand code, assess impact, and navigate safely.
 
 > If any GitNexus tool warns the index is stale, run `npx gitnexus analyze` in terminal first.
+>
+> This repository was renamed from `SkillSpoke-assets`. If the `gitnexus://repo/shared-brand-assets/...` resources do not resolve, or `list_repos` shows only `SkillSpoke-assets`, run `npx gitnexus analyze` from this repository's root to register it as `shared-brand-assets`.
 
 ## Always Do
 
