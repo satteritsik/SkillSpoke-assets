@@ -15,3 +15,7 @@ Thumbs.db
 
 # Beads / Dolt files (added by bd init)
 .beads/proxieddb/
+
+# Beads runtime and database files, and the standard ignores (polyrepo)
+.beads/issues.jsonl
+*.gate.lock*
