@@ -126,35 +126,118 @@ bd prime                # Refresh Beads context
 <!-- BEGIN SKILLSPOKE SHARED: written by `polyrepo agents-sync` from repositories/agents-shared-block.md in the SkillSpoke repo; edit it there -->
 ## SkillSpoke: instructions shared by every repository
 
-SkillSpoke is a personal job-search agent: it does the job search on the seeker's behalf, and
-every capability serves the job seeker. This repository is one of the project's repositories;
-the SkillSpoke command-and-control repository (`$SKILLSPOKE_CC`) holds the instructions that
-apply across all of them.
+This repository is one of the SkillSpoke project's repositories. The SkillSpoke
+command-and-control repository (`$SKILLSPOKE_CC`) holds the instructions that apply across all
+of them, in its `AGENTS.md` and `.claude/rules/`. A session here follows the same rules and
+expectations as a session there; this block carries the ones that apply in every repository.
 
-- **Who works here.** The owner is the only human. Claude Code wrote all of the code and
-  documentation, so anything found here, finished or not, is Claude Code's to own and fix.
-- **Repository facts.** Ask the `polyrepo-steward` agent for anything about a repository
-  other than its contents: which repo owns a function, where a repo is, whether it is up to
-  date with GitHub, creating, renaming or deprecating one.
+SkillSpoke is a personal job-search agent: it does the job search on the seeker's behalf, and
+every capability serves the job seeker.
+
+### Who works here
+
+- **Understand before you act.** Analyze, plan and understand the problem, then do it right the
+  first time. Never fix the same problem repeatedly by acting before understanding.
+- The owner is the only human. Claude Code wrote all of the code and documentation, so anything
+  found here, finished or not, is Claude Code's to own and fix. Never attribute it to anyone
+  else, and do not use git history or blame to decide who did something.
+- **Scope.** Fix what is broken inside the module you are working in, even if this session did
+  not cause it. Report a problem outside it to the owner in one line with a proposed fix. Never
+  stay silent about a problem.
+- Only the owner runs `keeper.py` and `supervisor.py`. Never run, dry-run or rehearse them.
+
+### Lifecycle and AWS
+
+- SkillSpoke is in alpha testing: one development AWS account, at most five users expected.
+  That is the context for cost, deployment-impact and capacity decisions, not a product limit.
+- Do not engineer for hypothetical load. Weigh provisioned capacity with a monthly floor
+  (ElastiCache node, idle RDS, NAT Gateway) against per-request pricing (DynamoDB on-demand,
+  Lambda). If a decision needs a scale figure nobody has given, ask rather than invent one.
+- Every `aws` and `cdk` command carries `--profile <name>` right after the subcommand (for
+  example `cdk destroy --profile dev <stack>`). Never rely on the default profile or `AWS_PROFILE`.
+
+### Where to find things
+
+- **Project documentation** (product, architecture, research, glossary) lives in the
+  `skillspoke-docs` Obsidian vault. Search it before answering what the product does, what was
+  decided, or where a contract is defined. Use the `obsidian:obsidian-cli` skill and always pin
+  the vault: `obsidian-cli vault="skillspoke-docs" search query="<terms>" limit=10`.
+- Obsidian must be running. Empty output or "unable to find Obsidian" means the app is closed,
+  not that nothing exists: ask the owner to open it.
+- The architecture is the arc42 SAD under `docs/tech/architecture/arc42/` in the vault, kept
+  with the `agent-teams-workforce:arc42` skills. Do not create ADRs.
+- **Repository facts.** Ask the `polyrepo-steward` agent for anything about a repository other
+  than its contents: which repo owns a function, where a repo is, whether it is up to date with
+  GitHub, creating, renaming or deprecating one. For cross-repo code questions, search the
+  GraphRAG MCP (`mcp__mcp-graphrag-server__search`) first.
 - **Repository names.** `SkillSpoke-{name}` is the personal-agent app; `shared-{name}` is
   shared across the whole company; `marketing-{name}` is marketing; `employer-{name}` is the
   employer app. A repo is never deleted: it is deprecated by renaming it `deprecated-{name}`
   in lowercase, and archived on GitHub 60 days later.
-- **Project documentation** (product, architecture, research, glossary) lives in the
-  `skillspoke-docs` Obsidian vault. The architecture is the arc42 SAD under
-  `docs/tech/architecture/arc42/` in the vault.
-- **Commits.** `type(scope): description`, no `Co-Authored-By`. `--no-verify` is forbidden:
-  when a pre-commit hook fails, fix every finding and commit again.
+
+### Code quality (this is the product: tier 1)
+
+- Concurrency guards, timeouts, backoff, idempotency, incremental processing, explicit error
+  handling and resource cleanup.
+- Latest stable versions, no deprecated patterns, no clever solutions unless asked.
+- Files under 500 lines. Typed interfaces for public APIs. Validate at system boundaries.
+- Spec-first OpenAPI: the spec exists before handler code. TDD London School (mock-first) for
+  new code.
+- **No hardcoding.** Make behavior data-driven and configurable. Paths use the project's
+  environment variables (for example `$SKILLSPOKE_ROOT`); if none fits, create one before
+  writing a literal path. Never write a person's name into a rule, script, hook or config: say
+  "the owner".
 - **Errors stay visible.** `2>/dev/null` is not used in hooks, scripts or commands.
-- **Platform rules.** Lambda handlers use `aws-lambda-powertools` (FastAPI, Flask and Django
-  are banned). API Gateway is REST API v1 (HTTP API v2 is banned).
-- **Service isolation.** A service never imports another service's code, never shares a
-  DynamoDB table with another service, and never uses CloudFormation exports for
-  cross-stack references (SSM Parameter Store is used instead).
-- **CDK.** Build every CDK app and stack with `shared-cdk-lib` (import `skillspoke_cdk`): `run_app`,
-  `PlatformStack`, `Names`, `ChassisFunction`, `PlatformRestApi`, `PlatformTable`, `put_param`; never a
-  copied `lambda_utils.py`. A repository not yet on it moves to it when a Task next changes its CDK.
-- **Issue tracking** is beads (`bd`).
+
+### Platform rules
+
+- Lambda handlers use `aws-lambda-powertools`. FastAPI, Flask and Django are banned.
+- API Gateway is REST API v1. HTTP API v2 is banned.
+- **Service isolation.** A service never imports another service's code (no
+  `from skill_spoke.common` or `from skill_spoke.services.<other>`) and owns its own DynamoDB
+  tables; services do not share a table unless the owner explicitly says so for that scope.
+- Cross-stack values go through SSM Parameter Store: the producing stack writes the parameter,
+  the consuming stack reads it. Never CloudFormation exports or imports.
+- **CDK.** Build every CDK app and stack with `shared-cdk-lib` (import `skillspoke_cdk`):
+  `run_app`, `PlatformStack`, `Names`, `ChassisFunction`, `PlatformRestApi`, `PlatformTable`,
+  `put_param`; never a copied `lambda_utils.py`. A repository not yet on it moves to it when a
+  Task next changes its CDK.
+- **Web UI.** Product UI is built with the `cds` plugin (the Configurable Design System), using
+  its configuration and composition rather than a page-by-page design. Tables use AG Grid.
+- **Issue tracking** is beads (`bd`), prefix `ssbd-`. Never run `bd init`.
+
+### Git flow
+
+- Work happens in a git worktree on a feature branch, never on `main` in the primary working
+  tree. Never commit on `main` and never push to `main`.
+- Commits: `type(scope): description`, no `Co-Authored-By`.
+- Run `ruff check` on the files you changed before committing.
+- `--no-verify` (and `git commit -n`) is forbidden. When a pre-commit hook fails, fix every
+  finding, restage, and commit again. If a finding cannot be fixed, abort with no commit and
+  report. Loosening lint config is the owner's decision.
+- The agent that writes a change commits it, pushes the branch and opens the PR with
+  `skillspoke-pr`, run inside the branch's worktree. Never `gh pr create`. An unpushed commit
+  or a branch with no PR is unfinished work.
+- `skillspoke-pr` arms auto-merge and chains the shepherd, which fixes until checks pass and
+  threads resolve; GitHub auto-merge then merges. Never ask the owner to merge and never merge
+  yourself: find what blocks auto-merge and clear it.
+
+### Bash commands
+
+Write each command so an unattended run never stops on a permission prompt:
+
+- One command per call: no `&&` or `;` chains, no `for`, `while` or `if` on the command line.
+- Absolute paths or `git -C <dir>`, never `cd <dir> && ...`.
+- No command substitution (`$(...)`, backticks), `eval`, or paths built from shell variables.
+- A destructive command (`rm`, `git worktree remove`, `mv` over files) names a literal path in
+  a call of its own.
+- Multi-step logic goes in a script file in the scratchpad; run the script.
+
+### Name the thing
+
+Use the real name of a system, tool, command, file, bead, repository or document, never a
+generic category word (`ssbd-q5km`, not "the Epic"; `bd`, not "the tracker"). Take project
+terms from the vault glossary (`docs/glossary/`, one note per term).
 <!-- END SKILLSPOKE SHARED -->
 
 <!-- BEGIN AGENT TEAMS WORKFORCE: written by `polyrepo agents-sync` from agents-file.md in the agent-teams-workforce plugin; edit it there -->
