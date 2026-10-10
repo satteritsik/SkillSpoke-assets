@@ -153,8 +153,12 @@ every capability serves the job seeker.
 - Do not engineer for hypothetical load. Weigh provisioned capacity with a monthly floor
   (ElastiCache node, idle RDS, NAT Gateway) against per-request pricing (DynamoDB on-demand,
   Lambda). If a decision needs a scale figure nobody has given, ask rather than invent one.
-- Every `aws` and `cdk` command carries `--profile <name>` right after the subcommand (for
-  example `cdk destroy --profile dev <stack>`). Never rely on the default profile or `AWS_PROFILE`.
+- Every `aws` and `cdk` command passes `--profile` right after the subcommand, with the value of
+  the environment variable `SKILLSPOKE_AWS_PROFILE`: `--profile {{.SKILLSPOKE_AWS_PROFILE}}` in
+  a Taskfile, `--profile "$SKILLSPOKE_AWS_PROFILE"` in a shell. The variable is required, with no
+  default; never rely on the default profile or `AWS_PROFILE`. No code names, passes or reads an
+  AWS account (no `-c account=`, no `CDK_DEFAULT_ACCOUNT`): the account comes only from the
+  profile. The one fixed value is CodeArtifact, which always lives in account 616930583457.
 
 ### Where to find things
 
